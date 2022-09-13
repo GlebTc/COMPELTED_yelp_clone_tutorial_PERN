@@ -32,7 +32,6 @@ const UpdateRestaurant = (props) => {
             price_range: priceRange
         })
         navigate("/")
-        console.log(updatedRestaurant.data.data.restaurant)
     }
 
     return(
