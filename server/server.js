@@ -12,6 +12,7 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
+ 
 // Get all restaurants
 app.get("/api/v1/restaurants", async (req, res) => {
 
@@ -37,7 +38,6 @@ app.get("/api/v1/restaurants/:id", async (req, res) => {
     console.log(req.params.id)
     try {
         const results = await db.query('select * from restaurants where id = $1', [req.params.id])
-        console.log(results.rows[0])
         res.status(200).json({
             status: "success",
             data : {
@@ -53,8 +53,6 @@ app.get("/api/v1/restaurants/:id", async (req, res) => {
 
 // Create a restaurant
 app.post("/api/v1/restaurants", async (req, res) => {
-    console.log(req.body)
-
     try {
         const results = await db.query("insert into restaurants (name, location, price_range) values ($1, $2, $3) returning *", [req.body.name, req.body.location, req.body.price_range])
         console.log(results)
@@ -87,10 +85,6 @@ app.put('/api/v1/restaurants/:id', async (req, res) => {
     } catch (err) {
         console.log(err)
     }
-
-    console.log(req.params.id)
-    console.log(req.body)
-
 })
 
 // Delete restaurant
