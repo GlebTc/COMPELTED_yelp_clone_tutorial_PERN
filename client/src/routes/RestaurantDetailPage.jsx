@@ -4,6 +4,7 @@ import RestaurantFinder from '../apis/RestaurantFinder'
 import { RestaurantsContext } from '../context/RestaurantsContext'
 import Reviews from '../components/Reviews'
 import AddReview from '../components/AddReview'
+import StarRating from '../components/StarRating'
 
 const RestaurantDetailPage = (props) => {
     const {id} = useParams ()
@@ -29,6 +30,12 @@ const RestaurantDetailPage = (props) => {
             {selectedRestaurant && (
                 <>
                     <h1 className="text-center display-1">{selectedRestaurant.restaurant.name}</h1>
+                    <dic className="text-center">
+                        <StarRating rating={selectedRestaurant.restaurant.average_rating}/>
+                        <span className="text-warning ml-1">
+                            {selectedRestaurant.restaurant.count ? `(${selectedRestaurant.restaurant.count})` : "(0)"}
+                        </span>
+                    </dic>
                     <div className="mt-3">
                         <Reviews reviews={selectedRestaurant.reviews}/>
                         <AddReview />
