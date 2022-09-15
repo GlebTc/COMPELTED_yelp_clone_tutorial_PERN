@@ -41,4 +41,3 @@ const RestaurantDetailPage = (props) => {
 
 export default RestaurantDetailPage
 
-// https://youtu.be/J01rYl9T3BU?t=18921
